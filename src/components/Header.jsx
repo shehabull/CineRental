@@ -4,12 +4,13 @@ import Sun from "../assets/icons/sun.svg";
 import Logo from "../assets/logo.svg";
 import Ring from "../assets/ring.svg";
 import ShoppingCart from "../assets/shopping-cart.svg";
+
 import { MovieContext, ThemeContext } from "../context";
 import CartDeatils from "./cine/CartDeatils";
 
 export default function Header() {
   const [showModal, setShowModal] = useState(false);
-  const { cartData } = useContext(MovieContext);
+  const { state } = useContext(MovieContext);
   const { darkMode, setDarkMode } = useContext(ThemeContext);
 
   function handleShoppingCartClick() {
@@ -55,9 +56,12 @@ export default function Header() {
                 onClick={handleShoppingCartClick}
               >
                 <img src={ShoppingCart} width="24" height="24" alt="" />
-                <span className="absolute -top-1 -right-2 rounded-full bg-primary w-5 h-5 flex items-center justify-center">
-                  {cartData.length}
-                </span>
+
+                {state.cartData.length > 0 && (
+                  <span className="absolute -top-1 -right-2 rounded-full bg-primary w-5 h-5 flex items-center justify-center">
+                    {state.cartData.length}
+                  </span>
+                )}
               </a>
             </li>
           </ul>
