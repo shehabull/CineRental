@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { toast } from "react-toastify";
 import Tag from "../../assets/tag.svg";
 import { MovieContext } from "../../context";
 import { getImgUrl } from "../../utils/cine-utility";
@@ -24,8 +25,13 @@ export default function MovieCard({ movie }) {
           ...movie,
         },
       });
+      toast.success(`Them ${movie.title} has been added successfully`, {
+        position: "bottom-right",
+      });
     } else {
-      console.error("The movie already added");
+      toast.error(`Them ${movie.title} already added`, {
+        position: "bottom-right",
+      });
     }
   }
 
